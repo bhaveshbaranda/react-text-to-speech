@@ -59,7 +59,7 @@ function T2S() {
                 <div className="container">
                     <div className="row row-big">
                         <div className="col">
-                                <Webcam id="video"audio = {false} ref = {webcamRef} screenshotFormat = "image/jpeg"/>
+                                <Webcam videoConstraints={{facingMode:{exact:"environment"}}}id="video"audio = {false} ref = {webcamRef} screenshotFormat = "image/jpeg"/>
                         </div>
                             
                             
