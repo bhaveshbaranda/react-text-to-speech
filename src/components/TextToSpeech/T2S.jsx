@@ -12,9 +12,14 @@ function T2S() {
   const [imgSrc,  setImgSrc ] = useState(null);
   const [textOcr, setTextOcr] = useState(null);
   const [load,    setLoad   ] = useState(false);
+  const [facingMode, setfacingMode] = useState("user");
 
   const { speak } = useSpeechSynthesis();
-
+  
+  const toggle = () => {
+    if(facingMode === "user") setfacingMode("environment");
+    else setfacingMode("user");
+  }
   const capture = useCallback(() => {
     setLoad(true)
     const imageSrc = webcamRef.current.getScreenshot();
@@ -59,7 +64,7 @@ function T2S() {
                 <div className="container">
                     <div className="row row-big">
                         <div className="col">
-                                <Webcam videoConstraints={{facingMode:{exact:"environment"}}}id="video"audio = {false} ref = {webcamRef} screenshotFormat = "image/jpeg"/>
+                                <Webcam videoConstraints={{facingMode:facingMode}}id="video"audio = {false} ref = {webcamRef} screenshotFormat = "image/jpeg"/>
                         </div>
                             
                             
@@ -103,6 +108,10 @@ function T2S() {
 
                     <div className="row row-small">
                         <button id="button"onClick={capture}size='big'style={{margin:10}}>Capture</button>
+                    </div>
+
+                    <div className="row row-small">
+                        <button id="button"onClick={toggle}size='big'style={{margin:10}}>Toggle Camera</button>
                     </div>
 
                 </div>
