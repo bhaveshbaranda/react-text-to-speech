@@ -7,29 +7,11 @@ import './style.css'
 import './style1.css'
 
 function T2S() {
-    const textstyle = {
-        play: {
-            hover: {
-            backgroundColor: 'black',
-            color:'white'
-            },
-            button: {
-            padding:'4',
-            fontFamily: 'Helvetica',
-            fontSize: '1.0em',
-            cursor: 'pointer',
-            pointerEvents: 'none',
-            outline: 'none',
-            backgroundColor: 'inherit',
-            border: 'none'
-            },
-        }
-    }
 
   const webcamRef = useRef(null);
   
   const [imgSrc,  setImgSrc ] = useState(null);
-  const [textOcr, setTextOcr] = useState(null);
+  const [textOcr, setTextOcr] = useState("Recognizing...");
   const [load,    setLoad   ] = useState(false);
   const [facingMode, setfacingMode] = useState("user");
   const toggle = () => {
