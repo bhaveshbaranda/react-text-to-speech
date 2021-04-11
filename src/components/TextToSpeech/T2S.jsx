@@ -1,11 +1,30 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 import { createWorker } from 'tesseract.js';
-import { useSpeechSynthesis } from 'react-speech-kit'
+// import { useSpeechSynthesis } from 'react-speech-kit'
+import Speech from 'react-speech'
 import './style.css'
 import './style1.css'
 
 function T2S() {
+    const textstyle = {
+        play: {
+            hover: {
+            backgroundColor: 'black',
+            color:'white'
+            },
+            button: {
+            padding:'4',
+            fontFamily: 'Helvetica',
+            fontSize: '1.0em',
+            cursor: 'pointer',
+            pointerEvents: 'none',
+            outline: 'none',
+            backgroundColor: 'inherit',
+            border: 'none'
+            },
+        }
+    }
 
   const webcamRef = useRef(null);
   
@@ -13,13 +32,11 @@ function T2S() {
   const [textOcr, setTextOcr] = useState(null);
   const [load,    setLoad   ] = useState(false);
   const [facingMode, setfacingMode] = useState("user");
-
-  const { speak } = useSpeechSynthesis();
-  
   const toggle = () => {
     if(facingMode === "user") setfacingMode("environment");
     else setfacingMode("user");
-  }
+  };
+
   const capture = useCallback(() => {
     setLoad(true)
     const imageSrc = webcamRef.current.getScreenshot();
@@ -37,7 +54,7 @@ function T2S() {
         const { data: { text } } = await worker.recognize(imageSrc);
         await setTextOcr(text);
         await setLoad(false);
-        await speak({text: text});
+        // await speak({text: text});
     };
     doOCR();
 
@@ -103,13 +120,12 @@ function T2S() {
                             }
                     </div>
 
-                    <div className="row row-small">
-                        <button id="button"onClick={capture}size='big'style={{margin:10}}>Capture</button>
+                    <div className="row row-big">
+                        <Speech style={{play:{button:{width:'100', height:'28'}}}} text={textOcr} />
+                        <button id="button" onClick={capture}>Capture</button>
+                        <button id="button" onClick={toggle}>Toggle Camera</button>
                     </div>
-
-                    <div className="row row-small">
-                        <button id="button"onClick={toggle}size='big'style={{margin:10}}>Toggle Camera</button>
-                    </div>
+                    
 
                 </div>
 
