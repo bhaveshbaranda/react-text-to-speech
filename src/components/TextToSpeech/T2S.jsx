@@ -48,9 +48,6 @@ function T2S() {
   return (
       <div className="main">
 
-          <div className="pimg1">
-          </div>
-
           <div className="pimg2">
               <div className="ptext">
                   <div className="border">
@@ -131,9 +128,6 @@ function T2S() {
                   <li>Himanshu Mittal [16EC35013]</li>
               </ul>
           </section>
-
-          <div className="pimg1">
-          </div>
 
       </div>
   );
