@@ -70,7 +70,7 @@ function App() {
               {text}
             </div>
             <div>
-              {text && (<Speech style={{play:{button:{width:'100', height:'28'}}}} text={text}/>)}
+              {text && (<Speech text={text}/>)}
             </div>
           </div>
         }

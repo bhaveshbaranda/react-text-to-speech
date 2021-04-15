@@ -3,6 +3,7 @@ import Measure from "react-measure";
 import { useUserMedia } from "../hooks/use-user-media";
 import { useCardRatio } from "../hooks/use-card-ratio";
 import { useOffsets } from "../hooks/use-offsets";
+import { changeDpiBlob } from 'dpi-tools';
 import {
   Video,
   Canvas,
@@ -54,12 +55,6 @@ export function Camera({ onCapture, onClear }) {
     videoRef.current.play();
   }
 
-
-
-
-
-
-
   function handleCapture() {
     const context = canvasRef.current.getContext("2d");
 
@@ -77,7 +72,19 @@ export function Camera({ onCapture, onClear }) {
 
     context.putImageData(preprocessImage(canvasRef), 0, 0);
 
-    canvasRef.current.toBlob(blob => onCapture(blob), "image/jpeg", 1);
+    canvasRef.current.toBlob((blob) => {
+      changeDpiBlob(blob, 300)
+      .then((blob)=>{
+        onCapture(blob);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    },
+     "image/jpeg", 
+     1
+    );
+
     setIsCanvasEmpty(false);
     setIsFlashing(true);
   }
