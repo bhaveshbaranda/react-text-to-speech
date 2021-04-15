@@ -5,6 +5,7 @@ import { createWorker } from 'tesseract.js';
 import Speech from 'react-speech';
 import './App.css';
 
+
 function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [cardImage, setCardImage] = useState();

@@ -18,6 +18,7 @@ const preprocessImage = (canvasRef) => {
    * 3. Skew Correction
    *  3.1 Skew Detection using Hough Transformation
    *  3.2 Skew Correctin using Geometrical Transformation
+   * 4. Image Enhancement
    */
 
   /**
@@ -41,9 +42,10 @@ const preprocessImage = (canvasRef) => {
   /**
    * Image Enhancement
    */
-  // dilate(processedImageData.data, canvas);
-  // erode(processedImageData.data, canvas);
+  processedImageData = sharpen(processedImageData);
   processedImageData = enhance(processedImageData, invertColors(laplacian(processedImageData)));
+  dilate(processedImageData.data, canvas);
+  erode(processedImageData.data, canvas);
   
   return processedImageData;
 };
@@ -74,9 +76,16 @@ function enhance(pixels, edges) {
   for(let y=0 ; y<height ; y++) {
     for(let x=0 ; x<width ; x++) {
       let offset = (y * width + x) * 4;
-      outputData.data[offset + 0] = 255 - (edges.data[offset+0] ^ pixels.data[offset+0]);
-      outputData.data[offset + 1] = 255 - (edges.data[offset+1] ^ pixels.data[offset+1]);
-      outputData.data[offset + 2] = 255 - (edges.data[offset+2] ^ pixels.data[offset+2]);
+      if(edges[offset] == 0) {
+        outputData.data[offset + 0] = edges.data[offset + 0];
+        outputData.data[offset + 1] = edges.data[offset + 1];
+        outputData.data[offset + 2] = edges.data[offset + 2];
+      }
+      else {
+        outputData.data[offset + 0] = pixels.data[offset + 0];
+        outputData.data[offset + 1] = pixels.data[offset + 1];
+        outputData.data[offset + 2] = pixels.data[offset + 2];
+      }
     }
   }
   return outputData;
@@ -102,7 +111,6 @@ function setPixels (pixels, data) {
   }
 };
 
-// from https://github.com/processing/p5.js/blob/main/src/image/filters.js
 function buildBlurKernel(r) {
 let radius = (r * 3.5) | 0;
 radius = radius < 1 ? 1 : radius < 248 ? radius : 248;
@@ -136,7 +144,6 @@ if (blurRadius !== radius) {
 }
 }
 
-// from https://github.com/processing/p5.js/blob/main/src/image/filters.js
 function blurARGB(pixels, canvas, radius) {
 const width = canvas.width;
 const height = canvas.height;
