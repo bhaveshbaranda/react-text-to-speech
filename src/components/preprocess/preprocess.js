@@ -41,8 +41,8 @@ const preprocessImage = (canvasRef) => {
   /**
    * Image Enhancement
    */
-  dilate(processedImageData.data, canvas);
-  erode(processedImageData.data, canvas);
+  // dilate(processedImageData.data, canvas);
+  // erode(processedImageData.data, canvas);
   processedImageData = enhance(processedImageData, invertColors(laplacian(processedImageData)));
   
   return processedImageData;
