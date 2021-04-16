@@ -41,47 +41,81 @@ function App() {
   },[text]);
 
   return (
-    <Fragment>
-      <Root>
-        {isCameraOpen && (
-          <Camera
-            onCapture={blob => setCardImage(blob)}
-            onClear={() => {
-              setCardImage(undefined);
-              setText(null);
-              setLoad(false);
-            }}
-          />
-        )}
+    <div>
+      {/* Header Section */}
 
-        {cardImage && (
+      <section id="header">
+        <div className="header container">
           <div>
-            <h2>Preview</h2>
-            <Preview src={cardImage && URL.createObjectURL(cardImage)} />
+            <h1>TEXT<span></span></h1>
+            <h1>ALOUD<span></span></h1>
+            <h1>APP<span></span></h1>
+            <a href="http://localhost:3000/" type="button" className="button">GITHUB</a>
           </div>
-        )}
+        </div>
+      </section>
 
-        {
-          load 
-          ?
-          <div>Loading...</div>
-          :
-          <div>
-            <div>
-              {text}
+      {/* Header Section End */}
+
+      {/* Projects Section */}
+
+        <section id="projects">
+          <div className="projects container">
+            <div className="projects-top">
+              <h1 className="section-title"><span>P</span>roject</h1>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nostrum. Magni optio pariatur iusto incidunt ratione officia doloribus distinctio repellat tenetur quaerat! Corrupti eum modi dolore sapiente velit. Corrupti quaerat veniam dignissimos perspiciatis unde necessitatibus ipsum quisquam exercitationem, aliquid alias ab cumque autem ullam magnam. Numquam voluptas quam doloremque voluptatum.</p>
             </div>
-            <div>
-              {text && (<Speech text={text}/>)}
+            <div className="projects-bottom">
+              <div className="projects-item">
+                <Root>
+                  {isCameraOpen && (
+                    <Camera
+                      onCapture={blob => setCardImage(blob)}
+                      onClear={() => {
+                        setCardImage(undefined);
+                        setText(null);
+                        setLoad(false);
+                      }}
+                    />
+                  )}
+
+                  {cardImage && (
+                    <div>
+                      <h2>Preview</h2>
+                      <Preview src={cardImage && URL.createObjectURL(cardImage)} />
+                    </div>
+                  )}
+
+                  {
+                    load 
+                    ?
+                    <div>Loading...</div>
+                    :
+                    <div>
+                      <div>
+                        {text}
+                      </div>
+                      <div>
+                        {text && (<Speech text={text}/>)}
+                      </div>
+                    </div>
+                  }
+
+                  <Footer>
+                    <button onClick={() => setIsCameraOpen(true)}>Open Camera</button>
+                  </Footer>
+                </Root>
+                <GlobalStyle />
+              </div>
             </div>
           </div>
-        }
+        </section>
 
-        <Footer>
-          <button onClick={() => setIsCameraOpen(true)}>Open Camera</button>
-        </Footer>
-      </Root>
-      <GlobalStyle />
-    </Fragment>
+      {/* Projects Section */}
+    </div>
   );
 }
 export default App;
+{/* <Fragment>
+
+</Fragment> */}
