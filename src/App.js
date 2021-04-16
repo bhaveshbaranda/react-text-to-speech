@@ -51,7 +51,7 @@ function App() {
             <h1>TEXT<span></span></h1>
             <h1>ALOUD<span></span></h1>
             <h1>APP<span></span></h1>
-            <a href="http://localhost:3000/" type="button" className="button">GITHUB</a>
+            <a href="https://react-text-to-speech.herokuapp.com/" type="button" className="button">GITHUB</a>
           </div>
         </div>
       </section>
@@ -108,19 +108,18 @@ function App() {
           <h2>Your Complete Web Solution</h2>
           <div class="social-icon">
             <div class="social-item">
-              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+              <a href="https://react-text-to-speech.herokuapp.com/"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
             </div>
             <div class="social-item">
-              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+              <a href="https://react-text-to-speech.herokuapp.com/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
             </div>
             <div class="social-item">
-              <a href="#"><img src="https://img.icons8.com/fluent/50/000000/twitter.png"/></a>
+              <a href="https://react-text-to-speech.herokuapp.com/"><img src="https://img.icons8.com/fluent/50/000000/twitter.png"/></a>
             </div>
             <div class="social-item">
-              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
+              <a href="https://react-text-to-speech.herokuapp.com/"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
             </div>
           </div>
-          <p>Copyright © 2020 Arfan. All rights reserved</p>
         </div>
       </section>
       {/* End Footer Section */}
