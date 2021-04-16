@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   position: relative;
+  border: 4px dashed tomato;
   width: 100%;
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}px`};
   max-height: ${({ maxHeight }) => maxHeight && `${maxHeight}px`};

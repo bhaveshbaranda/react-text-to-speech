@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Camera } from "./components/camera/index";
 import { Root, Preview, Footer, GlobalStyle } from "./styles";
 import { createWorker } from 'tesseract.js';
-import Speech from 'react-speech';
+import { useSpeechSynthesis } from 'react-speech-kit';
 import './App.css';
 
 
@@ -11,6 +11,7 @@ function App() {
   const [cardImage, setCardImage] = useState();
   const [text, setText] = useState(null);
   const [load, setLoad] = useState(false);
+  const { speak } = useSpeechSynthesis();
 
   useEffect(()=>{
 
@@ -58,64 +59,73 @@ function App() {
       {/* Header Section End */}
 
       {/* Projects Section */}
-
-        <section id="projects">
-          <div className="projects container">
-            <div className="projects-top">
-              <h1 className="section-title"><span>P</span>roject</h1>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nostrum. Magni optio pariatur iusto incidunt ratione officia doloribus distinctio repellat tenetur quaerat! Corrupti eum modi dolore sapiente velit. Corrupti quaerat veniam dignissimos perspiciatis unde necessitatibus ipsum quisquam exercitationem, aliquid alias ab cumque autem ullam magnam. Numquam voluptas quam doloremque voluptatum.</p>
-            </div>
-            <div className="projects-bottom">
-              <div className="projects-item">
+      <section id="card">
+        <div class="card container">
+          <div class="card-items">
+            <div class="card-item">
+                <h1 className="section-title"><span>T</span>ext <span>T</span>o<span> S</span>peech</h1>
                 <Root>
-                  {isCameraOpen && (
-                    <Camera
-                      onCapture={blob => setCardImage(blob)}
-                      onClear={() => {
-                        setCardImage(undefined);
-                        setText(null);
-                        setLoad(false);
-                      }}
-                    />
-                  )}
-
-                  {cardImage && (
-                    <div>
-                      <h2>Preview</h2>
-                      <Preview src={cardImage && URL.createObjectURL(cardImage)} />
-                    </div>
-                  )}
-
-                  {
-                    load 
-                    ?
-                    <div>Loading...</div>
-                    :
-                    <div>
+                    {isCameraOpen && (
+                      <Camera
+                        onCapture={blob => setCardImage(blob)}
+                        onClear={() => {
+                          setCardImage(undefined);
+                          setText(null);
+                          setLoad(false);
+                        }}
+                      />
+                    )}
+                    {cardImage && (
                       <div>
-                        {text}
+                        <Preview src={cardImage && URL.createObjectURL(cardImage)} />
                       </div>
-                      <div>
-                        {text && (<Speech text={text}/>)}
-                      </div>
-                    </div>
-                  }
-
-                  <Footer>
-                    <button onClick={() => setIsCameraOpen(true)}>Open Camera</button>
-                  </Footer>
+                    )}  
                 </Root>
-                <GlobalStyle />
-              </div>
+                    
+                {
+                      load 
+                      ?
+                      <a type="button" className="button"onClick={() => speak({text:"Loading..."})}>Loading...</a>
+                      :
+                      text===null
+                      ?
+                      <div/>
+                      :
+                      <a type="button" className="button"onClick={() => speak({text:text})}>{text}</a>
+                }                    
+                <a type="button" className="button"onClick={() => setIsCameraOpen(true)}>Open Camera</a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+      {/* End Projects Section */}
 
-      {/* Projects Section */}
+      
+
+      {/* Footer Section */}
+      <section id="footer">
+        <div class="footer container">
+          <h2>Your Complete Web Solution</h2>
+          <div class="social-icon">
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/fluent/50/000000/twitter.png"/></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
+            </div>
+          </div>
+          <p>Copyright © 2020 Arfan. All rights reserved</p>
+        </div>
+      </section>
+      {/* End Footer Section */}
     </div>
   );
 }
 export default App;
-{/* <Fragment>
 
-</Fragment> */}

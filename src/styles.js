@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    height: 100%;
+    // height: 100%;
   }
 
   body {
@@ -30,13 +30,15 @@ export const Root = styled.main`
   text-align: center;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 50px 0 100px;
-  background-color:#B0B3B8;
+  // padding: 50px 0 100px;
+  background-color:transparent;
 `;
 
 export const Preview = styled.img`
   width: 100%;
   height: auto;
+  border: 5px dashed tomato;
+  margin-top:14%;
 `;
 
 export const Footer = styled.footer`
