@@ -1,3 +1,10 @@
+# Prerequisites
+Install Node.js from official website
+Then in project directory
+run: npm install
+This will install the required libraries.
+Then run: npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
