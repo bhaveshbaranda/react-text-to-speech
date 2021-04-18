@@ -14,7 +14,7 @@ To do that use the following command
 This will install the required libraries
 
 After installing Run the following command for running the app
-npm start
+<br/>npm start
 
 This will start our application on <br/>http://localhost:3000/
 
