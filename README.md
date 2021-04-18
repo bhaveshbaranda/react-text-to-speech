@@ -1,4 +1,4 @@
-# Getting Started With the App
+# Getting Started with Our App
 
 To Run the application in local computer
 First you need to install node from official website
