@@ -38,14 +38,7 @@ const preprocessImage = (canvasRef) => {
    */
   let theta = getSkewAngle(processedImageData);
   processedImageData = correctSkew(processedImageData, theta);
-  
-  /**
-   * Image Enhancement
-   */
-  processedImageData = sharpen(processedImageData);
-  processedImageData = enhance(processedImageData, invertColors(laplacian(processedImageData)));
-  dilate(processedImageData.data, canvas);
-  erode(processedImageData.data, canvas);
+ 
   
   return processedImageData;
 };
